@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="carmember">
+     <!-- 전체개수 -->
+     <select id = "getTotalCountOfCarMember" resultType="int">
+     	select count(*) from carmember
+     </select>
+     
+     <!-- 전체 리스트 -->
+     <select id="getAllListOfMymember" resultType="cardto">
+     select * from carmember order by num desc;
+     </select>
+     
+     <!--인서트 -->
+     <insert id="insertOfMymember" parameterType="cardto">
+     	insert into carmember (name,hp,addr,gaipday) values (#{name}, #{hp}, #{addr}, now())
+     </insert>
+     
+     <!-- 삭제 -->
+     <delete id="deleteOfMymember" parameterType="int">
+     delete from carmember where num = #{num}
+     </delete>
+     
+     <!--업데이트 값받아오기 -->
+     <select id="selectOfMymember" parameterType="int" resultType="cardto">
+     select * from carmember where num =#{num}
+     </select>
+     
+     <!-- 업데이트 -->
+     <update id="updateOfMymember" parameterType="cardto">
+     update carmember set name=#{name}, hp=#{hp}, addr=#{addr} where num=#{num}
+     </update>
+     
+  </mapper>
